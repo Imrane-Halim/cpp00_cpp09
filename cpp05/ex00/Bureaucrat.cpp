@@ -1,6 +1,6 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(const std::string &name, unsigned short int grade):
+Bureaucrat::Bureaucrat(const std::string &name, short int grade):
 _name(name)
 {
 	_setGrade(grade);
@@ -21,7 +21,7 @@ const char*	Bureaucrat::GradeTooLowException::what() const throw() {
 	return "Bureaucrat::GradeTooLowException";
 }
 
-void		Bureaucrat::_setGrade(unsigned short int grade)
+void		Bureaucrat::_setGrade(short int grade)
 {
 	try
 	{
@@ -31,6 +31,7 @@ void		Bureaucrat::_setGrade(unsigned short int grade)
 	}
 	catch(const std::exception& e)
 	{
+		_grade = -1;
 		std::cerr << e.what() << std::endl;
 	}
 }
@@ -51,7 +52,7 @@ const std::string	&Bureaucrat::getName(void) const
 	return _name;
 }
 
-const unsigned short int	&Bureaucrat::getGrade(void) const
+const short int	&Bureaucrat::getGrade(void) const
 {
 	return _grade;
 }
@@ -64,4 +65,10 @@ void	Bureaucrat::incrementGrade()
 void	Bureaucrat::decrementGrade()
 {
 	_setGrade(_grade + 1);
+}
+
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &obj)
+{
+	os << obj.getName() << ", bureaucrat grade " << obj.getGrade() << "." << std::endl;
+	return os;
 }

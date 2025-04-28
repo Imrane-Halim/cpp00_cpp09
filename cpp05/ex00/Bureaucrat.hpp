@@ -6,7 +6,7 @@
 #include <exception>
 
 class Bureaucrat {
-	unsigned short int	_grade;
+	short int	_grade;
 	const std::string	_name;
 
 	class GradeTooHighException: public std::exception {
@@ -16,19 +16,21 @@ class Bureaucrat {
 		const char*	what() const throw();
 	};
 
-	void	_setGrade(unsigned short int grade);
+	void	_setGrade(short int grade);
 public:
-	Bureaucrat(const std::string &name, unsigned short int grade);
+	Bureaucrat(const std::string &name, short int grade);
 	Bureaucrat(const Bureaucrat &copy);
 	~Bureaucrat();
 
 	Bureaucrat	&operator=(const Bureaucrat &copy);
 
 	const std::string		&getName(void) const;
-	const unsigned short	&getGrade(void) const;
+	const short	&getGrade(void) const;
 
 	void	incrementGrade();
 	void	decrementGrade();
 };
+
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &obj);
 
 #endif
