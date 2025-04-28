@@ -6,13 +6,15 @@
 #include <exception>
 
 class Bureaucrat {
-	short int	_grade;
 	const std::string	_name;
+	short int			_grade;
 
 	class GradeTooHighException: public std::exception {
+	public:
 		const char*	what() const throw();
 	};
 	class GradeTooLowException: public std::exception {
+	public:
 		const char*	what() const throw();
 	};
 
