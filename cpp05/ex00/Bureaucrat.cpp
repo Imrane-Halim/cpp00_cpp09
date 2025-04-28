@@ -31,7 +31,8 @@ void		Bureaucrat::_setGrade(short int grade)
 	}
 	catch(const std::exception& e)
 	{
-		_grade = -1;
+		if (_grade < 1 || _grade > 150)
+			_grade = -1;
 		std::cerr << e.what() << std::endl;
 	}
 }
