@@ -25,12 +25,8 @@ void		Bureaucrat::_setGrade(unsigned short int grade)
 {
 	try
 	{
-		Bureaucrat::GradeTooLowException	lowGrade;
-		Bureaucrat::GradeTooHighException	highGrade;
-		if (grade < 1)
-			throw highGrade;
-		if (grade > 150)
-			throw lowGrade;
+		if (grade < 1) throw GradeTooHighException();
+		if (grade > 150) throw GradeTooLowException();
 		_grade = grade;
 	}
 	catch(const std::exception& e)
@@ -58,4 +54,14 @@ const std::string	&Bureaucrat::getName(void) const
 const unsigned short int	&Bureaucrat::getGrade(void) const
 {
 	return _grade;
+}
+
+void	Bureaucrat::incrementGrade()
+{
+	_setGrade(_grade - 1);
+}
+
+void	Bureaucrat::decrementGrade()
+{
+	_setGrade(_grade + 1);
 }

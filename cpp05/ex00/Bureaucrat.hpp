@@ -27,8 +27,8 @@ public:
 	const std::string		&getName(void) const;
 	const unsigned short	&getGrade(void) const;
 
-	void	incrementGrade(unsigned short int grade);
-	void	decrementGrade(unsigned short int grade);
+	void	incrementGrade();
+	void	decrementGrade();
 };
 
 #endif
