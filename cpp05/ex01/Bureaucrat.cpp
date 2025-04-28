@@ -6,10 +6,8 @@ _name(name)
 	_setGrade(grade);
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &copy)
-{
-	*this = copy;
-}
+Bureaucrat::Bureaucrat(const Bureaucrat &copy):
+_name(copy._name), _grade(copy._grade) {}
 
 Bureaucrat::~Bureaucrat() {}
 
@@ -23,28 +21,15 @@ const char*	Bureaucrat::GradeTooLowException::what() const throw() {
 
 void		Bureaucrat::_setGrade(short int grade)
 {
-	try
-	{
-		if (grade < 1) throw GradeTooHighException();
-		if (grade > 150) throw GradeTooLowException();
-		_grade = grade;
-	}
-	catch(const std::exception& e)
-	{
-		if (_grade < 1 || _grade > 150)
-			_grade = -1;
-		std::cerr << e.what() << std::endl;
-	}
+	if (grade < 1) throw GradeTooHighException();
+	if (grade > 150) throw GradeTooLowException();
+	_grade = grade;
 }
 
 Bureaucrat	&Bureaucrat::operator=(const Bureaucrat &copy)
 {
 	if (this != &copy)
-	{
-		// this is 'const std::string'
-		//_name = copy._name;
-		_setGrade(copy._grade);
-	}
+		_grade = copy._grade;
 	return *this;
 }
 
