@@ -27,11 +27,12 @@ class AForm
 public:
 	AForm(const std::string &name, short signGrade, short execGrade);
 	AForm(const AForm &copy);
-	~AForm();
+	virtual ~AForm();
 
 	AForm	&operator=(const AForm &copy);
 
-	void	beSigned(const Bureaucrat &obj);
+	void			beSigned(const Bureaucrat &obj);
+	virtual void	execute(const Bureaucrat &execute) const = 0;
 
 	const std::string	&getName(void) const;
 	bool				getSignStatus(void) const;
