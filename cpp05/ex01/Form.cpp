@@ -20,6 +20,7 @@ Form	&Form::operator=(const Form &copy)
 
 void	Form::beSigned(const Bureaucrat &obj)
 {
+	if (_signed) return;
 	if (obj.getGrade() <= _signGrade)
 		_signed = true;
 	else

@@ -8,7 +8,7 @@ int main(void) {
 
         std::cout << moron;
         std::cout << form;
-        form.beSigned(moron);
+        moron.signForm(form);
         std::cout << form;
     }
     catch (const std::exception &e) {
