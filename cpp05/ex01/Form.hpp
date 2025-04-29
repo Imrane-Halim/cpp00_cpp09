@@ -32,8 +32,13 @@ public:
 	Form	&operator=(const Form &copy);
 
 	void	beSigned(const Bureaucrat &obj);
+
+	const std::string	&getName(void) const;
+	bool				getSignStatus(void) const;
+	short			getSignGrade(void) const;
+	short			getExecGrade(void) const;
 };
 
-std::ostream &operator<<(std::ostream &os, const Bureaucrat &obj);
+std::ostream &operator<<(std::ostream &os, const Form &obj);
 
 #endif
