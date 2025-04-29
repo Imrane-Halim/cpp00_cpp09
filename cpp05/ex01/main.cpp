@@ -3,7 +3,7 @@
 
 int main(void) {
     try {
-        Bureaucrat  moron("jamal", 1);
+        Bureaucrat  moron("jamal", 3);
         Form        form("license", 2, 2);
 
         std::cout << moron;
