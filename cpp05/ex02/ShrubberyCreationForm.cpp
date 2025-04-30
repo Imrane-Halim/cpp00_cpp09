@@ -3,8 +3,8 @@
 ShrubberyCreationForm::ShrubberyCreationForm():
 AForm("NO_NAME", -1, -1), _target("NO_TARGET") {}
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target, const std::string &name, short signGrade, short execGrade):
-AForm(name, signGrade, execGrade), _target(target) {}
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target, const std::string &name):
+AForm(name, 145, 137), _target(target) {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &copy):
 AForm(copy.getName(), copy.getSignGrade(), copy.getExecGrade()), _target(copy._target) {}

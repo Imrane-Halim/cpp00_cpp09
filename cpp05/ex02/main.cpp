@@ -4,7 +4,7 @@
 int main(void) {
     try {
         Bureaucrat  moron("jamal", 1);
-        ShrubberyCreationForm form("me", "pardon", 2, 2);
+        ShrubberyCreationForm form("me", "pardon");
 
         moron.signForm(form);
         form.execute(moron);

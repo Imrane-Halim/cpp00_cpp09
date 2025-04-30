@@ -10,7 +10,7 @@ class ShrubberyCreationForm: public AForm
 	void		_drawTree(void) const;
 public:
 	ShrubberyCreationForm();
-	ShrubberyCreationForm(const std::string &target, const std::string &name, short signGrade, short execGrade);
+	ShrubberyCreationForm(const std::string &target, const std::string &name);
 	ShrubberyCreationForm(const ShrubberyCreationForm &copy);
 	~ShrubberyCreationForm();
 
