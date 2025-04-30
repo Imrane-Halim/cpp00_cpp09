@@ -23,7 +23,7 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 void	ShrubberyCreationForm::_drawTree(void) const
 {
-	std::string		f_name = _target + "_shurbbery";
+	std::string		f_name = _target + "_shrubbery";
 	std::ofstream	file(f_name.c_str());
 
 	if (!file.is_open())
