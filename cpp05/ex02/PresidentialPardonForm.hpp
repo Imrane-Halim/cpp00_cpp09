@@ -10,7 +10,7 @@ class PresidentialPardonForm: public AForm
 	void		_pardon(void) const;
 public:
 	PresidentialPardonForm();
-	PresidentialPardonForm(const std::string &target, const std::string &name);
+	PresidentialPardonForm(const std::string &target);
 	PresidentialPardonForm(const PresidentialPardonForm &copy);
 	~PresidentialPardonForm();
 

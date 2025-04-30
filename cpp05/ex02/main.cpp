@@ -8,7 +8,7 @@ int main(void) {
     std::cout << "test 1:" << std::endl;
     try {
         Bureaucrat  moron("jamal", 1);
-        ShrubberyCreationForm form("me", "pardon");
+        ShrubberyCreationForm form("me");
 
         moron.signForm(form);
         form.execute(moron);
@@ -20,7 +20,7 @@ int main(void) {
     // -----------><---------------
     std::cout << "\n\ntest 2:" << std::endl;
     Bureaucrat  moron("jamal", 1);
-    RobotomyRequestForm form("me", "robotonomy");
+    RobotomyRequestForm form("me");
     for (int i = 0; i < 5; i++)
     {
         try {
@@ -36,7 +36,7 @@ int main(void) {
     std::cout << "\n\ntest 2:" << std::endl;
     try {
         Bureaucrat  moron("jamal", 1);
-        PresidentialPardonForm form("me", "pardon");
+        PresidentialPardonForm form("me");
 
         moron.signForm(form);
         form.execute(moron);

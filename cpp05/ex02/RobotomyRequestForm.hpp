@@ -12,7 +12,7 @@ class RobotomyRequestForm: public AForm
 	void		_robotomize(void) const;
 public:
 	RobotomyRequestForm();
-	RobotomyRequestForm(const std::string &target, const std::string &name);
+	RobotomyRequestForm(const std::string &target);
 	RobotomyRequestForm(const RobotomyRequestForm &copy);
 	~RobotomyRequestForm();
 

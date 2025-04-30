@@ -3,8 +3,8 @@
 PresidentialPardonForm::PresidentialPardonForm():
 AForm("NO_NAME", -1, -1), _target("NO_TARGET") {}
 
-PresidentialPardonForm::PresidentialPardonForm(const std::string &target, const std::string &name):
-AForm(name, 25, 5), _target(target) {}
+PresidentialPardonForm::PresidentialPardonForm(const std::string &target):
+AForm("PresidentialPardonForm", 25, 5), _target(target) {}
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &copy):
 AForm(copy.getName(), 25, 5), _target(copy._target) {}

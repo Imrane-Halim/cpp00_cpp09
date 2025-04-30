@@ -6,8 +6,8 @@ AForm("NO_NAME", -1, -1), _target("NO_TARGET")
 	srand(time(NULL));
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string &target, const std::string &name):
-AForm(name, 72, 45), _target(target)
+RobotomyRequestForm::RobotomyRequestForm(const std::string &target):
+AForm("RobotomyRequestForm", 72, 45), _target(target)
 {
 	srand(time(NULL));
 }
