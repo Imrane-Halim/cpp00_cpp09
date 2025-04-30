@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include <exception>
+#include <fstream>
+#include <cerrno>
 #include "Bureaucrat.hpp"
 
 class Bureaucrat;
@@ -15,11 +17,16 @@ class AForm
 	const short			_signGrade;
 	const short			_execGrade;
 
+public:
 	class GradeTooHighException: public std::exception {
 	public:
 		const char*	what() const throw();
 	};
 	class GradeTooLowException: public std::exception {
+	public:
+		const char*	what() const throw();
+	};
+	class UnsignedForm: public std::exception {
 	public:
 		const char*	what() const throw();
 	};
