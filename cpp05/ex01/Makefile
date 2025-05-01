@@ -7,7 +7,7 @@ NAME = bureaucrat
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CXX) $(OBJ) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
