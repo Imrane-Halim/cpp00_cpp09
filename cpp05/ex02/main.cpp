@@ -33,7 +33,7 @@ int main(void) {
     }
     
     // -----------><---------------
-    std::cout << "\n\ntest 2:" << std::endl;
+    std::cout << "\n\ntest 3:" << std::endl;
     try {
         Bureaucrat  moron("jamal", 1);
         PresidentialPardonForm form("me");
@@ -44,6 +44,14 @@ int main(void) {
     catch (const std::exception &e) {
         std::cerr << "Error: " << e.what() << std::endl;
     } 
+
+    // -----------><---------------
+    std::cout << "\n\ntest 4:" << std::endl;
+    Bureaucrat  man("jamal", 1);
+    PresidentialPardonForm obj("me");
+
+    man.signForm(obj);
+    man.executeForm(obj);
 
     return 0;
 }
