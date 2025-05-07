@@ -23,7 +23,6 @@ enum eTypes
 class ScalarConverter
 {
 	static eTypes	_type;
-	static bool		_isPseudoLiteral;
 
 	static long		_i;
 	static char		_c;
@@ -31,6 +30,7 @@ class ScalarConverter
 	static double	_d;
 
 	static	bool	_checkRange(double n, double min, double max);
+	static	bool	_isEnd(const char *);
 	public:
 	ScalarConverter();
 	ScalarConverter(const ScalarConverter&);

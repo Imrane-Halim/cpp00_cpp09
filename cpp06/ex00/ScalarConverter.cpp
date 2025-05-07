@@ -2,7 +2,6 @@
 #include <cstdio>
 
 eTypes	ScalarConverter::_type = INVALID;
-bool	ScalarConverter::_isPseudoLiteral = false;
 long	ScalarConverter::_i = 0;
 char	ScalarConverter::_c = 0;
 float	ScalarConverter::_f = 0;
@@ -22,6 +21,11 @@ bool	ScalarConverter::_checkRange(double n, double min, double max)
 	return (n >= min && n <= max);
 }
 
+bool	ScalarConverter::_isEnd(const char *end)
+{
+	return *end == '\0';
+}
+
 eTypes	ScalarConverter::getType(std::string&  str)
 {
 	char *end;
@@ -30,38 +34,44 @@ eTypes	ScalarConverter::getType(std::string&  str)
 		return INVALID;
 
 	_i = strtol(str.c_str(), &end, 10);
-	if (_checkRange(_i, INT_MIN, INT_MAX) && *end == '\0')
+	if (_checkRange(_i, INT_MIN, INT_MAX) && _isEnd(end))
 		return INT;
 	
 	_f = strtof(str.c_str(), &end);
 	if (_checkRange(_f, __FLT_MIN__, __FLT_MAX__)
 		&& (*end == 'f' || *end == 'F'))
-		return FLOAT;
+		if (_isEnd(end + 1))
+			return FLOAT;
 
 	_d = strtod(str.c_str(), &end);
 	if (_checkRange(_d, __DBL_MIN__, __DBL_MAX__)
-		&& *end == '\0')
+		&& _isEnd(end))
 		return DOUBLE;
 
-	if (std::isinf(_f) && (*end == 'F' || *end == 'f'))
-		return FLOAT;
-
-	if (std::isinf(_d))
-		return DOUBLE;
+	if (std::isinf(_d) || std::isinf(_f))
+	{
+		if ((*end == 'f' || *end == 'F') && _isEnd(end + 1))
+			return FLOAT;
+		else if (_isEnd(end))
+			return DOUBLE;
+	}
 
 	if (std::isnan(_d) || std::isnan(_f))
-		return DNAN;
+	{
+		if ((*end == 'f' || *end == 'F') && _isEnd(end + 1))
+			return DNAN;
+		else if (_isEnd(end))
+			return DNAN;
+	}
 
 	return INVALID;
 }
 
 void	ScalarConverter::convert(std::string str)
 {
-	eTypes type = getType(str);
+	_type = getType(str);
 
-	_type = type;
-
-	switch (type)
+	switch (_type)
 	{
 	case INT:
 		_d = static_cast<double>(_i);
@@ -97,8 +107,9 @@ void	ScalarConverter::printScalar(void)
 	if (std::isprint(_c))
 		std::cout << "char  : " << _c << std::endl;
 	else
-		std::cout << "char  : impossible" << std::endl;
+		std::cout << "char  : non displayable" << std::endl;
 
+	std::cout << std::fixed << std::setprecision(1);
 	std::cout << "float : " << _f << 'f' << std::endl;
 	std::cout << "double: " << _d << std::endl;
 }
