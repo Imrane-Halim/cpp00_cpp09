@@ -109,7 +109,14 @@ void	ScalarConverter::printScalar(void)
 	else
 		std::cout << "char  : non displayable" << std::endl;
 
-	std::cout << std::fixed << std::setprecision(1);
-	std::cout << "float : " << _f << 'f' << std::endl;
-	std::cout << "double: " << _d << std::endl;
+	// std::cout << std::fixed << std::setprecision(1);
+	std::cout << "float : " << _f;
+	if (_f == _i)
+		std::cout << ".0";
+	std::cout << 'f' << std::endl;
+
+	std::cout << "double: " << _d;
+	if (_d == _i)
+		std::cout << ".0";
+	std::cout << std::endl;
 }
