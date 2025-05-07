@@ -8,7 +8,7 @@ int main(int ac, char **av) {
 		return EXIT_FAILURE;
 	}
 
-	ScalarConverter::convert(av[1]);
+	ScalarConverter::convert(std::string(av[1]));
 	ScalarConverter::printScalar();
 
 	return 0;

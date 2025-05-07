@@ -38,8 +38,8 @@ class ScalarConverter
 	
 	ScalarConverter	&operator=(const ScalarConverter&);
 	
-	static	eTypes	getType(const char*);
-	static	void	convert(const std::string &);
+	static	eTypes	getType(std::string&);
+	static	void	convert(std::string);
 	static	void	printScalar(void);
 };
 

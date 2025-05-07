@@ -22,23 +22,23 @@ bool	ScalarConverter::_checkRange(double n, double min, double max)
 	return (n >= min && n <= max);
 }
 
-eTypes	ScalarConverter::getType(const char *str)
+eTypes	ScalarConverter::getType(std::string&  str)
 {
 	char *end;
 
-	if (*str == '\0')
+	if (str.empty())
 		return INVALID;
 
-	_i = strtol(str, &end, 10);
+	_i = strtol(str.c_str(), &end, 10);
 	if (_checkRange(_i, INT_MIN, INT_MAX) && *end == '\0')
 		return INT;
 	
-	_f = strtof(str, &end);
+	_f = strtof(str.c_str(), &end);
 	if (_checkRange(_f, __FLT_MIN__, __FLT_MAX__)
 		&& (*end == 'f' || *end == 'F'))
 		return FLOAT;
 
-	_d = strtod(str, &end);
+	_d = strtod(str.c_str(), &end);
 	if (_checkRange(_d, __DBL_MIN__, __DBL_MAX__)
 		&& *end == '\0')
 		return DOUBLE;
@@ -55,9 +55,9 @@ eTypes	ScalarConverter::getType(const char *str)
 	return INVALID;
 }
 
-void	ScalarConverter::convert(const std::string &str)
+void	ScalarConverter::convert(std::string str)
 {
-	eTypes type = getType(str.c_str());
+	eTypes type = getType(str);
 
 	_type = type;
 
