@@ -1,4 +1,5 @@
 #include "ScalarConverter.hpp"
+#include <cstdio>
 
 eTypes	ScalarConverter::_type = INVALID;
 bool	ScalarConverter::_isPseudoLiteral = false;
@@ -16,33 +17,88 @@ ScalarConverter	&ScalarConverter::operator=(const ScalarConverter &)
 	return *this;
 }
 
-#include <cstdio>
+bool	ScalarConverter::_checkRange(double n, double min, double max)
+{
+	return (n >= min && n <= max);
+}
 
 eTypes	ScalarConverter::getType(const char *str)
 {
 	char *end;
 
+	if (*str == '\0')
+		return INVALID;
+
 	_i = strtol(str, &end, 10);
-	if (_i >= INT_MIN && _i <= INT_MAX && *end == '\0')
+	if (_checkRange(_i, INT_MIN, INT_MAX) && *end == '\0')
 		return INT;
 	
-	_d = strtod(str, &end);
-	if (_d >= __FLT_MIN__ && _d <= __FLT_MAX__ 
+	_f = strtof(str, &end);
+	if (_checkRange(_f, __FLT_MIN__, __FLT_MAX__)
 		&& (*end == 'f' || *end == 'F'))
-		return _f = _d, FLOAT;
-	
-	if (*end == '\0')
+		return FLOAT;
+
+	_d = strtod(str, &end);
+	if (_checkRange(_d, __DBL_MIN__, __DBL_MAX__)
+		&& *end == '\0')
 		return DOUBLE;
+
+	if (std::isinf(_f) && (*end == 'F' || *end == 'f'))
+		return FLOAT;
+
+	if (std::isinf(_d))
+		return DOUBLE;
+
+	if (std::isnan(_d) || std::isnan(_f))
+		return DNAN;
+
 	return INVALID;
 }
 
 void	ScalarConverter::convert(const std::string &str)
 {
 	eTypes type = getType(str.c_str());
-	std::cout << "type: " << type << std::endl;
+
+	_type = type;
+
+	switch (type)
+	{
+	case INT:
+		_d = static_cast<double>(_i);
+		_f = static_cast<float>(_i);
+		_c = static_cast<char>(_i);
+		break;
+	case FLOAT:
+		_d = static_cast<double>(_f);
+		_i = static_cast<int>(_f);
+		_c = static_cast<char>(_f);
+	case DOUBLE:
+		_i = static_cast<float>(_d);
+		_f = static_cast<float>(_d);
+		_c = static_cast<char>(_d);
+	default:
+		break;
+	}
 }
 
 void	ScalarConverter::printScalar(void)
 {
-	//std::cout << ScalarConverter::_d << std::endl;
+	if (_type == INVALID)
+	{
+		std::cout << "Invalid Input!" << std::endl;
+		return;
+	}
+
+	if (_checkRange(_i, INT_MIN, INT_MAX) && _type != DNAN)
+		std::cout << "int   : " << _i << std::endl;
+	else
+		std::cout << "int   : impossible" << std::endl;
+
+	if (std::isprint(_c))
+		std::cout << "char  : " << _c << std::endl;
+	else
+		std::cout << "char  : impossible" << std::endl;
+
+	std::cout << "float : " << _f << 'f' << std::endl;
+	std::cout << "double: " << _d << std::endl;
 }

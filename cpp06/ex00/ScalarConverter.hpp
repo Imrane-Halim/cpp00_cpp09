@@ -14,6 +14,7 @@
 enum eTypes
 {
 	INVALID,
+	DNAN,
 	FLOAT,
 	DOUBLE,
 	INT,
@@ -29,7 +30,7 @@ class ScalarConverter
 	static float	_f;
 	static double	_d;
 
-	static	void	_handlePseudo(void);
+	static	bool	_checkRange(double n, double min, double max);
 	public:
 	ScalarConverter();
 	ScalarConverter(const ScalarConverter&);
