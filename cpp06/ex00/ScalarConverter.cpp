@@ -8,13 +8,7 @@ float	ScalarConverter::_f = 0;
 double	ScalarConverter::_d = 0;
 
 ScalarConverter::ScalarConverter() {}
-ScalarConverter::ScalarConverter(const ScalarConverter &) {}
 ScalarConverter::~ScalarConverter() {}
-
-ScalarConverter	&ScalarConverter::operator=(const ScalarConverter &)
-{
-	return *this;
-}
 
 bool	ScalarConverter::_checkRange(double n, double min, double max)
 {

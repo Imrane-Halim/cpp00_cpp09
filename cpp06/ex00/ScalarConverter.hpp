@@ -31,12 +31,10 @@ class ScalarConverter
 
 	static	bool	_checkRange(double n, double min, double max);
 	static	bool	_isEnd(const char *);
-	public:
-	ScalarConverter();
-	ScalarConverter(const ScalarConverter&);
-	~ScalarConverter();
 	
-	ScalarConverter	&operator=(const ScalarConverter&);
+	ScalarConverter();
+	~ScalarConverter();
+public:
 	
 	static	eTypes	getType(std::string&);
 	static	void	convert(std::string);
