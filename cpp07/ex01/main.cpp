@@ -1,7 +1,7 @@
 #include "iter.hpp"
 
-char	mytoupper(char c) { return toupper(c); }
-int		multiplay(int x) { return x * 10; }
+void	mytoupper(char &c) { c = toupper(c); }
+void	multiplay(int &x) { x = x * 10; }
 
 int main()
 {
