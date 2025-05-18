@@ -14,8 +14,8 @@ class AForm
 {
 	const std::string	_name;
 	bool				_signed;
-	const short			_signGrade;
-	const short			_execGrade;
+	short				_signGrade;
+	short				_execGrade;
 
 public:
 	class GradeTooHighException: public std::exception {
@@ -31,7 +31,9 @@ public:
 		const char*	what() const throw();
 	};
 
+	void	_setGrade(short &target, short);
 public:
+	AForm();
 	AForm(const std::string &name, short signGrade, short execGrade);
 	AForm(const AForm &copy);
 	virtual ~AForm();

@@ -1,10 +1,21 @@
 #include "AForm.hpp"
 
+AForm::AForm():
+	_name("NO_NAME"),
+	_signed(false),
+	_signGrade(1),
+	_execGrade(1) {}
 AForm::AForm(const std::string &name, short signGrade, short execGrade):
-_name(name), _signed(false), _signGrade(signGrade), _execGrade(execGrade) {}
+	_name(name),
+	_signed(false)
+{		
+	_setGrade(_signGrade, signGrade);
+	_setGrade(_execGrade, execGrade);
+}
 
 AForm::AForm(const AForm &copy):
-_signGrade(copy._signGrade), _execGrade(copy._execGrade)
+	_signGrade(copy._signGrade),
+	_execGrade(copy._execGrade)
 {
 	*this = copy;
 }
@@ -16,6 +27,13 @@ AForm	&AForm::operator=(const AForm &copy)
 	if (this != &copy)
 		_signed = copy._signed;
 	return *this;
+}
+
+void		AForm::_setGrade(short &target, short grade)
+{
+	if (grade < 1) throw GradeTooHighException();
+	if (grade > 150) throw GradeTooLowException();
+	target = grade;
 }
 
 void	AForm::beSigned(const Bureaucrat &obj)
