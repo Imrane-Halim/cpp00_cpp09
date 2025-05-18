@@ -23,6 +23,7 @@ class Bureaucrat {
 
 	void	_setGrade(short int grade);
 public:
+	Bureaucrat();
 	Bureaucrat(const std::string &name, short int grade);
 	Bureaucrat(const Bureaucrat &copy);
 	~Bureaucrat();
