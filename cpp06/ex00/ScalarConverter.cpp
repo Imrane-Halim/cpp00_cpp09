@@ -58,7 +58,7 @@ eTypes	ScalarConverter::getType(std::string&  str)
 			return DNAN;
 	}
 
-	return INVALID;
+	return (*end != '\0' ? INVALID : DOUBLE);
 }
 
 void	ScalarConverter::convert(std::string str)
@@ -98,12 +98,14 @@ void	ScalarConverter::printScalar(void)
 	else
 		std::cout << "int   : impossible" << std::endl;
 
-	if (std::isprint(_c))
+	if (!_checkRange(_i, 0, 127) || std::isnan(_i))
+		std::cout << "char  : impossible" << std::endl;
+	else if (std::isprint(_c))
 		std::cout << "char  : " << _c << std::endl;
 	else
 		std::cout << "char  : non displayable" << std::endl;
 
-	// std::cout << std::fixed << std::setprecision(1);
+	std::cout << std::fixed << std::setprecision(1);
 	std::cout << "float : " << _f;
 	if (_f == _i)
 		std::cout << ".0";
