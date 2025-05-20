@@ -1,6 +1,5 @@
 #include "easyfind.hpp"
 #include <vector>
-// #include <array> // does not exist in c++98
 #include <list>
 #include <queue>
 
@@ -9,7 +8,7 @@
 int	main(void)
 {
 	int	arr[] = {1, 2, 3, 4, 5, 6};
-	int	size = sizeof(arr) / sizeof(int);
+	int	size = sizeof(arr) / sizeof(arr[0]);
 
 	std::vector<int> vec;
 	std::list<int> lst;
@@ -23,12 +22,12 @@ int	main(void)
 	}
 
 	try
-	{ easyfind(que, 7); }
+	{ easyfind(que, 3); }
 	catch(const std::exception& e)
 	{ std::cerr << ERR; }
 
 	try
-	{ easyfind(que, 7); }
+	{ easyfind(que, 4); }
 	catch(const std::exception& e)
 	{ std::cerr << ERR; }
 
