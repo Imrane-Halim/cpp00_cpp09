@@ -16,6 +16,9 @@ public:
 template<typename T>
 void	easyfind(T& container, int target)
 {
+    // this is called dependent type resolution
+    // helps the compiler tell if it's a static data member
+    // of a class, or a nested type `eg: vector<>::iter...etc`
     typename T::iterator it = std::find(
         container.begin(),
         container.end(),
