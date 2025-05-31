@@ -6,63 +6,15 @@
 #include <exception>
 #include <stack>
 
-template<typename _t>
-class Iterator
-{
-    _t*     _ptr;
-
-public:
-    Iterator(): _ptr(NULL) { }
-    Iterator(const _t* ptr): _ptr(const_cast<_t*>(ptr)) { }
-    Iterator(const Iterator& other): _ptr(other._ptr) { }
-    ~Iterator() {}
-
-    _t&     operator*() { return *_ptr; }
-    _t*     operator->() { return _ptr; }
-
-    // pre:  ++foo
-    Iterator&   operator++()
-    {
-        ++_ptr;
-        return *this;
-    }  
-    Iterator&   operator--()
-    {
-        --_ptr;
-        return *this;
-    }
-
-    // post: foo++
-    Iterator    operator++(int)
-    {
-        Iterator    tmp = *this;
-        ++(*this);
-        return tmp;
-    }
-    Iterator    operator--(int)
-    {
-        Iterator    tmp = *this;
-        --(*this);
-        return tmp;
-    }
-
-    bool        operator==(const Iterator& other)
-    {
-        return this->_ptr == other._ptr;
-    }
-    bool        operator!=(const Iterator& other)
-    {
-        return this->_ptr != other._ptr;
-    }
-
-};
-
 
 template<typename _t>
 class MutantStack: public std::stack<_t>
 {
 public:
-    typedef Iterator<_t> iterator;
+    typedef typename std::stack<_t>::container_type  container;
+    typedef typename container::iterator             iterator;
+    typedef typename container::const_iterator       const_iterator;
+    typedef typename container::reverse_iterator     reverse_iterator;
 public:
     MutantStack() { }
     // paramerized constructor is not needed
@@ -76,15 +28,15 @@ public:
         return *this;
     }
 
-    iterator    begin(void)
-    {
-        return iterator(&this->top() - (this->size() + 1));
-    }
+    iterator    begin(void) { return std::stack<_t>::c.begin(); }
+    iterator    end(void)   { return std::stack<_t>::c.end(); }
     
-    iterator    end(void)
-    {
-        return iterator(&this->top());
-    }
+    iterator    cbegin(void) const { return std::stack<_t>::c.cbegin(); }
+    iterator    cend(void) const { return std::stack<_t>::c.cend(); }
+    
+    iterator    rbegin(void) { return std::stack<_t>::c.rbegin(); }
+    iterator    rend(void)   { return std::stack<_t>::c.rend(); }
+    
 };
 
 #endif
