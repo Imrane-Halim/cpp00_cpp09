@@ -17,7 +17,7 @@
 
 class BitcoinExchange
 {
-    typedef typename std::map<std::tm, float> dataBase;
+    typedef std::map<std::tm, float> dataBase;
 
     dataBase _records;
 
