@@ -1,8 +1,8 @@
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g3
 CXX = c++
-SRC = main.cpp
+SRC = main.cpp PmergeMe.cpp
 OBJ = $(SRC:.cpp=.o)
-NAME = btc
+NAME = PmergeMe
 
 all: $(NAME)
 
