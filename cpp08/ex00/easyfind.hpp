@@ -5,14 +5,6 @@
 #include <exception>
 #include <algorithm>
 
-class NotFoundExecption: public std::exception
-{
-public:
-    const char* what() const throw() {
-        return "Target Was Not Found!";
-    }
-};
-
 template<typename T>
 void	easyfind(T& container, int target)
 {
@@ -26,7 +18,7 @@ void	easyfind(T& container, int target)
     );
 
     if (it == container.end())
-        throw(NotFoundExecption());
+        throw(std::runtime_error("Target Not found!"));
     std::cout   << "Target found at pos: "
                 << std::distance(container.begin(), it)
                 << std::endl;
