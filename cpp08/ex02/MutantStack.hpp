@@ -17,25 +17,24 @@ public:
     typedef typename container::reverse_iterator     reverse_iterator;
 public:
     MutantStack() { }
-    // paramerized constructor is not needed
     MutantStack(const MutantStack& other): std::stack<_t>(other) { }
     ~MutantStack() { }
 
     MutantStack&    operator=(const MutantStack& other)
     {
         if (this != &other)
-            std::stack<_t>::operator=(other);
+            this->operator=(other);
         return *this;
     }
 
-    iterator    begin(void) { return std::stack<_t>::c.begin(); }
-    iterator    end(void)   { return std::stack<_t>::c.end(); }
+    iterator    begin(void) { return this->c.begin(); }
+    iterator    end(void)   { return this->c.end(); }
     
-    iterator    cbegin(void) const { return std::stack<_t>::c.cbegin(); }
-    iterator    cend(void) const { return std::stack<_t>::c.cend(); }
+    iterator    cbegin(void) const { return this->c.cbegin(); }
+    iterator    cend(void) const { return this->c.cend(); }
     
-    iterator    rbegin(void) { return std::stack<_t>::c.rbegin(); }
-    iterator    rend(void)   { return std::stack<_t>::c.rend(); }
+    iterator    rbegin(void) { return this->c.rbegin(); }
+    iterator    rend(void)   { return this->c.rend(); }
     
 };
 
