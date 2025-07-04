@@ -12,18 +12,6 @@ class Span
     std::vector<int> _vec;
     unsigned int     _max;
 
-    class _FullSpanException: public std::exception
-    {
-    public:
-        const char* what() const throw();
-    };
-
-    class _CantFindSpan: public std::exception
-    {
-    public:
-        const char *what() const throw();
-    };
-
     class _NumGen {
         int     _num;
     public:

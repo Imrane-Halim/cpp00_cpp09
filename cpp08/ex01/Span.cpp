@@ -23,16 +23,6 @@ Span&	Span::operator=(const Span& other)
 	return *this;
 }
 
-const char*	Span::_FullSpanException::what() const throw()
-{
-	return "Span is Full!";
-}
-
-const char*	Span::_CantFindSpan::what() const throw()
-{
-	return "No Span can be found!";
-}
-
 Span::_NumGen::_NumGen(int num): _num(num) { }
 int		Span::_NumGen::operator()()  { return _num++; }
 
@@ -41,13 +31,13 @@ void	Span::addNumber(int num)
 	if (_vec.size() < _max)
 		_vec.push_back(num);
 	else
-		throw(_FullSpanException());
+		throw(std::runtime_error("Span is Full!"));
 }
 
 void	Span::addRange(int start, int end)
 {
 	if (_vec.size() + (end - start + 1) > _max)
-		throw(_FullSpanException());
+		throw(std::runtime_error("Span is Full!"));
 	_NumGen gen(start);
 	std::generate_n(std::back_inserter(_vec), (end - start + 1), gen);
 }
@@ -61,7 +51,7 @@ void	Span::print(void) const
 int		Span::longestspan(void)
 {
 	if (_vec.size() <= 1)
-		throw(_CantFindSpan());
+		throw(std::runtime_error("Can't find span"));
 
 	return	*std::max_element(_vec.begin(), _vec.end())
 			- *std::min_element(_vec.begin(), _vec.end());
@@ -70,7 +60,7 @@ int		Span::longestspan(void)
 int		Span::shortestSpan(void)
 {
 	if (_vec.size() <= 1)
-		throw(_CantFindSpan());
+		throw(std::runtime_error("Can't find span"));
 	
 	std::vector<int> tmp(_vec);
 	std::sort(tmp.begin(), tmp.end());

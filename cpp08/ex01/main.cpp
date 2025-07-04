@@ -13,14 +13,14 @@ int main()
 
     // try
     // {
-    //     Span big(50000);
-    //     big.addRange(1, 50000);
-    //     big.print();
+    //     Span big(500000);
+    //     big.addRange(1, 500000);
+    //     // big.print();
+    //     std::cout << "longest span : " << big.longestspan() << '\n';
+    //     std::cout << "shortest span: " << big.shortestSpan() << '\n';
     // }
     // catch(const std::exception& e)
-    // {
-    //     std::cerr << e.what() << '\n';
-    // }
+    // { std::cerr << e.what() << '\n'; }
     
     Span nums(5);
 
