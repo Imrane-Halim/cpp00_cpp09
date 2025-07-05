@@ -7,17 +7,12 @@
 #include <algorithm>
 #include <climits>
 
+int _numGen();
+
 class Span
 {
     std::vector<int> _vec;
     unsigned int     _max;
-
-    class _NumGen {
-        int     _num;
-    public:
-        _NumGen(int num);
-        int operator()();
-    };
 
 public:
     Span();

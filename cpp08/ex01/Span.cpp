@@ -23,8 +23,7 @@ Span&	Span::operator=(const Span& other)
 	return *this;
 }
 
-Span::_NumGen::_NumGen(int num): _num(num) { }
-int		Span::_NumGen::operator()()  { return _num++; }
+int		_numGen() { return rand() % 10000; }
 
 void	Span::addNumber(int num)
 {
@@ -38,8 +37,11 @@ void	Span::addRange(int start, int end)
 {
 	if (_vec.size() + (end - start + 1) > _max)
 		throw(std::runtime_error("Span is Full!"));
-	_NumGen gen(start);
-	std::generate_n(std::back_inserter(_vec), (end - start + 1), gen);
+	std::generate_n(
+		std::back_inserter(_vec),
+		(end - start + 1),
+		_numGen
+	);
 }
 
 void	Span::print(void) const
