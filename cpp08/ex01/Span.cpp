@@ -33,13 +33,13 @@ void	Span::addNumber(int num)
 		throw(std::runtime_error("Span is Full!"));
 }
 
-void	Span::addRange(int start, int end)
+void	Span::addRange(int n_elem)
 {
-	if (_vec.size() + (end - start + 1) > _max)
+	if (_vec.size() + n_elem > _max)
 		throw(std::runtime_error("Span is Full!"));
 	std::generate_n(
 		std::back_inserter(_vec),
-		(end - start + 1),
+		n_elem,
 		_numGen
 	);
 }
@@ -67,10 +67,10 @@ int		Span::shortestSpan(void)
 	std::vector<int> tmp(_vec);
 	std::sort(tmp.begin(), tmp.end());
 
-	int span = INT_MAX;
-	for (long unsigned i = 0; i < tmp.size(); i++)
+	unsigned int span = UINT_MAX;
+	for (long unsigned i = 0; i < tmp.size() - 1; i++)
 	{
-		if (abs(tmp[i + 1] - tmp[i]) < span)
+		if (labs(tmp[i + 1] - tmp[i]) < span)
 			span = abs(tmp[i + 1] - tmp[i]);
 	}
 	return span;

@@ -23,7 +23,7 @@ public:
     Span&   operator=(const Span& other);
 
     void    addNumber(int num);
-    void    addRange(int start, int end);
+    void    addRange(int n_elem);
     int     shortestSpan();
     int     longestspan();
 

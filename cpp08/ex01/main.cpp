@@ -16,7 +16,7 @@ int main()
     try
     {
         Span big(10);
-        big.addRange(1, 10);
+        big.addRange(10);
         big.print();
         std::cout << "longest span : " << big.longestspan() << '\n';
         std::cout << "shortest span: " << big.shortestSpan() << '\n';
