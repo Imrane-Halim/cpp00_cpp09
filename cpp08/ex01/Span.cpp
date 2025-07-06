@@ -5,6 +5,7 @@ Span::Span():
 	_max(0) { }
 
 Span::Span(unsigned int N):
+	_vec(N),
 	_max(N) { }
 
 Span::Span(const Span& other):
