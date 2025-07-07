@@ -31,13 +31,13 @@ void	Span::addNumber(int num)
 	if (_vec.size() < _max)
 		_vec.push_back(num);
 	else
-		throw(std::runtime_error("Span is Full!"));
+		throw(std::runtime_error("Can't add number"));
 }
 
 void	Span::addRange(int n_elem)
 {
 	if (_vec.size() + n_elem > _max)
-		throw(std::runtime_error("Span is Full!"));
+		throw(std::runtime_error("Can't add range"));
 	std::generate_n(
 		std::back_inserter(_vec),
 		n_elem,
