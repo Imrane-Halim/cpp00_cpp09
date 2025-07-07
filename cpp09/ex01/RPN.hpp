@@ -8,4 +8,6 @@
 #include <cstdlib>
 #include <cstring>
 
+float   solve(std::stringstream& ss);
+
 #endif
