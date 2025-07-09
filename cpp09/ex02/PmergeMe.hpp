@@ -10,6 +10,9 @@
 #include <algorithm>
 #include <set>
 
+typedef std::vector<int> vec;
+typedef std::list<int> lst;
+
 int*    initArr(int* arr, int ac, char** av);
 
 template<typename _t>

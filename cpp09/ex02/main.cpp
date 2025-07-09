@@ -6,7 +6,7 @@
 //     // todo
 // }
 
-void    sortVector(std::vector<int>& vc)
+void    sortVector(vec& vc)
 {
     if (vc.size() == 1) return;
     
@@ -14,8 +14,8 @@ void    sortVector(std::vector<int>& vc)
     // leave one unpaired
     // 2. perform n/2 comparisons to find the larger of the 2 elements
     // in this case: paris[big, small]
-    std::vector<int> bigs;
-    std::vector<int> smls;
+    vec bigs;
+    vec smls;
     for (size_t i = 0; i < vc.size() - 1; i += 2)
     {
         if (vc[i] > vc[i + 1])
@@ -32,7 +32,7 @@ void    sortVector(std::vector<int>& vc)
     // 4. insert the start of S  the element that was paired with 
     // the first and smallest element of S
     // todo;
-    std::vector<int> S = bigs;
+    vec S = bigs;
 
     // 5. insert the remainin n/2-1 elements of vc/s into S, one at a time
     // using some jacobsthal seqecuence
@@ -41,7 +41,7 @@ void    sortVector(std::vector<int>& vc)
         for (int i = 0; i < (int)smls.size(); ++i)
         {
             // todo: use jacobsthal sequnce insted of just brut forcing this shit
-            std::vector<int>::iterator pos = std::lower_bound(S.begin(), S.end(), smls[i]);
+            vec::iterator pos = std::lower_bound(S.begin(), S.end(), smls[i]);
             S.insert(pos, smls[i]);
         }
     }
@@ -49,7 +49,7 @@ void    sortVector(std::vector<int>& vc)
     // 6. insert the leftover element
     if (hasLeftover)
     {
-        std::vector<int>::iterator pos = std::lower_bound(S.begin(), S.end(), leftover);
+        vec::iterator pos = std::lower_bound(S.begin(), S.end(), leftover);
         S.insert(pos, leftover);
     }
 
@@ -78,7 +78,7 @@ int main(int ac, char **av)
         return EXIT_FAILURE;
     }
     
-    std::vector<int> vc(arr, arr + ac - 1);
+    vec vc(arr, arr + ac - 1);
     sortVector(vc);
     printNums(vc, vc.size(), "After : ");
     // std::list<int> lst(arr, arr + ac - 1);
