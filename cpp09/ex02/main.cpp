@@ -10,7 +10,7 @@ std::vector<size_t> jacobSeq(size_t n)
 {
     std::vector<size_t> seq;
 
-    seq.push_back(1);
+    seq.push_back(0);
     seq.push_back(1);
 
     for (size_t i = 0; i < n; ++i)
@@ -45,14 +45,12 @@ void    sortVector(vec& vc)
 
     if (smls.size())
     {
-        // std::vector<size_t> order = jacobSeq(smls.size());
+        std::vector<size_t> order = jacobSeq(smls.size());
         for (int i = 0; i < (int)smls.size(); ++i)
         {
-            // size_t idx = order[i];
-            // vec::iterator pos = std::lower_bound(S.begin(), S.end(), smls[idx]);
-            // S.insert(pos, smls[idx]);
-            vec::iterator pos = std::lower_bound(S.begin(), S.end(), smls[i]);
-            S.insert(pos, smls[i]);
+            size_t idx = order[i];
+            vec::iterator pos = std::lower_bound(S.begin(), S.end(), smls[idx]);
+            S.insert(pos, smls[idx]);
         }
     }
 
