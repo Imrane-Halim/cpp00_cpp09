@@ -10,7 +10,7 @@ std::vector<size_t> jacobSeq(size_t n)
 {
     std::vector<size_t> seq;
 
-    seq.push_back(0);
+    seq.push_back(1);
     seq.push_back(1);
 
     for (size_t i = 0; i < n; ++i)
@@ -26,11 +26,7 @@ std::vector<size_t> jacobSeq(size_t n)
 void    sortVector(vec& vc)
 {
     if (vc.size() == 1) return;
-    
-    // 1. group elements of vc to [vc.size() / 2] pairs, if size is odd
-    // leave one unpaired
-    // 2. perform n/2 comparisons to find the larger of the 2 elements
-    // in this case: paris[big, small]
+
     vec bigs;
     vec smls;
     for (size_t i = 0; i < vc.size() - 1; i += 2)
@@ -43,28 +39,23 @@ void    sortVector(vec& vc)
     int hasLeftover = vc.size() % 2;
     int leftover = hasLeftover ? vc.back() : 0;
 
-    // 3. recursively sort n/2 larger elements from each pair
     sortVector(bigs);
 
-    // 4. insert the start of S  the element that was paired with 
-    // the first and smallest element of S
-    // todo;
     vec S = bigs;
 
-    // 5. insert the remainin n/2-1 elements of vc/s into S, one at a time
-    // using some jacobsthal seqecuence
     if (smls.size())
     {
-        std::vector<size_t> order = jacobSeq(smls.size());
+        // std::vector<size_t> order = jacobSeq(smls.size());
         for (int i = 0; i < (int)smls.size(); ++i)
         {
-            size_t idx = order[i];
-            vec::iterator pos = std::lower_bound(S.begin(), S.end(), smls[idx]);
+            // size_t idx = order[i];
+            // vec::iterator pos = std::lower_bound(S.begin(), S.end(), smls[idx]);
+            // S.insert(pos, smls[idx]);
+            vec::iterator pos = std::lower_bound(S.begin(), S.end(), smls[i]);
             S.insert(pos, smls[i]);
         }
     }
 
-    // 6. insert the leftover element
     if (hasLeftover)
     {
         vec::iterator pos = std::lower_bound(S.begin(), S.end(), leftover);
