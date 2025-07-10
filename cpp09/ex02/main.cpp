@@ -8,18 +8,28 @@
 
 vec insertOrder(int n)
 {
-    vec seq;
+    std::vector<int> seq;
+    if (n == 0) return seq;
 
     seq.push_back(0);
     seq.push_back(1);
 
-    for (int i = 0; i < n; ++i)
-    {
-        int idx = seq.size() - 1;
-        int next = seq[idx] + 2 * seq[idx - 1];
-        seq.push_back(next);
+    int next = 3;
+    while ((int)seq.size() < n) {
+        if (next < n) {
+            seq.push_back(next);
+            if ((int)seq.size() == n) break;
+        }
+
+        int prev = seq[(int)seq.size() - 2];
+        for (int i = next - 1; i > prev; --i) {
+            seq.push_back(i);
+            if ((int)seq.size() == n) break;
+        }
+
+        next = next + 2 * prev;
     }
-    
+
     return seq;
 }
 
