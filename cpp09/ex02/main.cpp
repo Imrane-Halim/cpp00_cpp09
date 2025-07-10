@@ -1,37 +1,43 @@
 #include "PmergeMe.hpp"
 
-// void    sortList(std::list<int>& lst)
-// {
-//     (void)lst;
-//     // todo
-// }
-
-vec insertOrder(int n)
+void    sortDeque(deq& vc)
 {
-    std::vector<int> seq;
-    seq.push_back(0);
-    seq.push_back(1);
+    if (vc.size() == 1) return;
 
-    int next = 3;
-    while ((int)seq.size() <= n)
+    deq bigs;
+    deq smls;
+    for (int i = 0; i < (int)vc.size() - 1; i += 2)
     {
-        if (next < n)
-        {
-            seq.push_back(next);
-            continue;
-        }
+        if (vc[i] > vc[i + 1])
+            std::swap(vc[i], vc[i + 1]);
+        bigs.push_back(vc[i + 1]);
+        smls.push_back(vc[i]);
+    }
+    int hasLeftover = vc.size() % 2;
+    int leftover = hasLeftover ? vc.back() : 0;
 
-        int prev = seq[seq.size() - 2];
+    sortDeque(bigs);
 
-        for (int i = next - 1; i > prev; --i)
+    deq S = bigs;
+
+    if (smls.size())
+    {
+        deq order = insertOrder<deq>((int)smls.size());
+        for (int i = 0; i < (int)smls.size(); ++i)
         {
-            seq.push_back(i);
-            if ((int)seq.size() == n) break;
+            int idx = order[i];
+            deq::iterator pos = std::lower_bound(S.begin(), S.end(), smls[idx]);
+            S.insert(pos, smls[idx]);
         }
-        next = next + 2 * prev;
     }
 
-    return seq;
+    if (hasLeftover)
+    {
+        deq::iterator pos = std::lower_bound(S.begin(), S.end(), leftover);
+        S.insert(pos, leftover);
+    }
+
+    vc = S;
 }
 
 void    sortVector(vec& vc)
@@ -56,7 +62,7 @@ void    sortVector(vec& vc)
 
     if (smls.size())
     {
-        std::vector<int> order = insertOrder((int)smls.size());
+        vec order = insertOrder<vec>((int)smls.size());
         for (int i = 0; i < (int)smls.size(); ++i)
         {
             int idx = order[i];
@@ -74,13 +80,11 @@ void    sortVector(vec& vc)
     vc = S;
 }
 
-
 int main(int ac, char **av)
 {
-    if (ac < 3)
+    if (ac < 2)
     {
         std::cerr << "Usage: ./PmergeMe <NUM_LIST>\n";
-        std::cerr << "Note : you need at least 2 number!\n";
         return EXIT_FAILURE;
     }
 
@@ -99,7 +103,10 @@ int main(int ac, char **av)
     vec vc(arr, arr + ac - 1);
     sortVector(vc);
     printNums(vc, vc.size(), "After : ");
-    // std::list<int> lst(arr, arr + ac - 1);
+
+    deq dq(arr, arr + ac - 1);
+    sortVector(vc);
+    printNums(vc, vc.size(), "After : ");
 
     delete[] arr;
 
