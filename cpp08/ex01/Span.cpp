@@ -46,7 +46,7 @@ void	Span::addRange(int n_elem)
 
 void	Span::print(void) const
 {
-	for (long unsigned int i = 0; i < _vec.size(); i++)
+	for (long unsigned i = 0; i < _vec.size(); i++)
 		std::cout << _vec[i] << std::endl;
 }
 
@@ -67,11 +67,11 @@ int		Span::shortestSpan(void)
 	std::vector<int> tmp(_vec);
 	std::sort(tmp.begin(), tmp.end());
 
-	unsigned int span = UINT_MAX;
-	for (long unsigned i = 0; i < tmp.size() - 1; i++)
+	long span = UINT_MAX;
+	for (size_t i = 0; i < tmp.size() - 1; i++)
 	{
 		if (labs(tmp[i + 1] - tmp[i]) < span)
-			span = abs(tmp[i + 1] - tmp[i]);
+			span = labs(tmp[i + 1] - tmp[i]);
 	}
 	return span;
 }
