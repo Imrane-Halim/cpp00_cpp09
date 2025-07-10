@@ -6,17 +6,17 @@
 //     // todo
 // }
 
-std::vector<size_t> jacobSeq(size_t n)
+vec insertOrder(int n)
 {
-    std::vector<size_t> seq;
+    vec seq;
 
     seq.push_back(0);
     seq.push_back(1);
 
-    for (size_t i = 0; i < n; ++i)
+    for (int i = 0; i < n; ++i)
     {
-        size_t idx = seq.size() - 1;
-        size_t next = seq[idx] + 2 * seq[idx - 1];
+        int idx = seq.size() - 1;
+        int next = seq[idx] + 2 * seq[idx - 1];
         seq.push_back(next);
     }
     
@@ -29,7 +29,7 @@ void    sortVector(vec& vc)
 
     vec bigs;
     vec smls;
-    for (size_t i = 0; i < vc.size() - 1; i += 2)
+    for (int i = 0; i < (int)vc.size() - 1; i += 2)
     {
         if (vc[i] > vc[i + 1])
             std::swap(vc[i], vc[i + 1]);
@@ -45,10 +45,10 @@ void    sortVector(vec& vc)
 
     if (smls.size())
     {
-        std::vector<size_t> order = jacobSeq(smls.size());
+        std::vector<int> order = insertOrder((int)smls.size());
         for (int i = 0; i < (int)smls.size(); ++i)
         {
-            size_t idx = order[i];
+            int idx = order[i];
             vec::iterator pos = std::lower_bound(S.begin(), S.end(), smls[idx]);
             S.insert(pos, smls[idx]);
         }
