@@ -1,13 +1,13 @@
 #include "Span.hpp"
+#include <list>
 
 int main()
 {
-    srand(time(NULL));
 
     try
     {
         Span big(10);
-        std::vector<int> range;
+        std::list<int> range;
     
         big.addNumber(9999);
         big.addNumber(345);
@@ -17,9 +17,8 @@ int main()
         
         big.addRange(range.begin(), range.end());
 
-        big.print();
         std::cout << "shortest span: " << big.shortestSpan() << '\n';
-        std::cout << "longest span : " << big.longestspan() << '\n';
+        std::cout << "longest span : " << big.longestSpan() << '\n';
     }
     catch(const std::exception& e)
     { std::cerr << e.what() << '\n'; }

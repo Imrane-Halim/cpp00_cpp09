@@ -31,26 +31,7 @@ void	Span::addNumber(int num)
 		throw(std::runtime_error("Can't add number"));
 }
 
-void    Span::addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end)
-{
-	int	dist = std::distance(begin, end);
-
-	if (_vec.size() + dist > _max)
-		throw(std::runtime_error("Can't add range"));
-	_vec.insert(
-		_vec.end(),
-		begin,
-		end	
-	);
-}
-
-void	Span::print(void) const
-{
-	for (long unsigned i = 0; i < _vec.size(); i++)
-		std::cout << _vec[i] << std::endl;
-}
-
-int		Span::longestspan(void)
+long		Span::longestSpan(void)
 {
 	if (_vec.size() <= 1)
 		throw(std::runtime_error("Can't find span"));
@@ -59,7 +40,7 @@ int		Span::longestspan(void)
 			- *std::min_element(_vec.begin(), _vec.end());
 }
 
-int		Span::shortestSpan(void)
+long		Span::shortestSpan(void)
 {
 	if (_vec.size() <= 1)
 		throw(std::runtime_error("Can't find span"));
@@ -70,8 +51,8 @@ int		Span::shortestSpan(void)
 	long span = UINT_MAX;
 	for (size_t i = 0; i < tmp.size() - 1; i++)
 	{
-		if (labs(tmp[i + 1] - tmp[i]) < span)
-			span = labs(tmp[i + 1] - tmp[i]);
+		if (tmp[i + 1] - tmp[i] < span)
+			span = tmp[i + 1] - tmp[i];
 	}
 	return span;
 }

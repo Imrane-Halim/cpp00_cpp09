@@ -21,11 +21,20 @@ public:
     Span&   operator=(const Span& other);
 
     void    addNumber(int num);
-    void    addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end);
-    int     shortestSpan();
-    int     longestspan();
+    
+    template<typename inputIterator>
+    void    addRange(inputIterator begin, inputIterator end)
+    {
+        int	dist = std::distance(begin, end);
 
-    void    print(void) const;
+        if (_vec.size() + dist > _max)
+            throw(std::runtime_error("Can't add range"));
+        _vec.insert(_vec.end(), begin, end );
+    }
+
+    long     shortestSpan();
+    long    longestSpan();
+
 };
 
 #endif
