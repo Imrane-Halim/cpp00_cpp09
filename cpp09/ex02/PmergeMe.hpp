@@ -10,6 +10,7 @@
 #include <set>
 #include <deque>
 #include <ctime>
+#include <iomanip>
 
 int*    initArr(int* arr, int ac, char** av);
 
