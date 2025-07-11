@@ -25,15 +25,15 @@ public:
     MutantStack&    operator=(const MutantStack& other)
     {
         if (this != &other)
-            this->operator=(other);
+            std::stack<_t>::operator=(other);
         return *this;
     }
 
     iterator    begin(void) { return this->c.begin(); }
     iterator    end(void)   { return this->c.end(); }
     
-    const_iterator  cbegin(void) const { return this->c.cbegin(); }
-    const_iterator  cend(void) const { return this->c.cend(); }
+    const_iterator  cbegin(void) const { return this->c.begin(); }
+    const_iterator  cend(void) const { return this->c.end(); }
     
     reverse_iterator    rbegin(void) { return this->c.rbegin(); }
     reverse_iterator    rend(void)   { return this->c.rend(); }
