@@ -7,11 +7,11 @@
 #include <stack>
 
 
-template<typename _t>
-class MutantStack: public std::stack<_t>
+template<typename T>
+class MutantStack: public std::stack<T>
 {
 public:
-    typedef typename std::stack<_t>::container_type     container;
+    typedef typename std::stack<T>::container_type      container;
     typedef typename container::iterator                iterator;
     typedef typename container::const_iterator          const_iterator;
     typedef typename container::reverse_iterator        reverse_iterator;
@@ -19,13 +19,13 @@ public:
 
 public:
     MutantStack() { }
-    MutantStack(const MutantStack& other): std::stack<_t>(other) { }
+    MutantStack(const MutantStack& other): std::stack<T>(other) { }
     ~MutantStack() { }
 
     MutantStack&    operator=(const MutantStack& other)
     {
         if (this != &other)
-            std::stack<_t>::operator=(other);
+            std::stack<T>::operator=(other);
         return *this;
     }
 
@@ -38,8 +38,8 @@ public:
     reverse_iterator    rbegin(void) { return this->c.rbegin(); }
     reverse_iterator    rend(void)   { return this->c.rend(); }
 
-    const_reverse_iterator crbegin() const { return this->c.crbegin(); }
-    const_reverse_iterator crend() const { return this->c.crend(); }
+    const_reverse_iterator crbegin() const { return this->c.rbegin(); }
+    const_reverse_iterator crend() const { return this->c.rend(); }
     
 };
 
