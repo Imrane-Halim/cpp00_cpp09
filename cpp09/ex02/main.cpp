@@ -23,7 +23,7 @@ int main(int ac, char **av)
     sortVector(vc);
 
     std::deque<int> dq(arr, arr + ac - 1);
-    sortVector(vc);
+    sortDeque(dq);
 
     printNums(arr, ac - 1, "Before: ");
     printNums(vc, vc.size(), "After : ");
