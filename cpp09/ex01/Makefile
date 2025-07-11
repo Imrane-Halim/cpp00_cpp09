@@ -1,4 +1,4 @@
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 #-g3 -fsanitize=address
+CXXFLAGS = -Wall -Wextra -Werror
 CXX = c++
 SRC = main.cpp RPN.cpp
 OBJ = $(SRC:.cpp=.o)
