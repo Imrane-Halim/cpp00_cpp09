@@ -9,14 +9,12 @@
 #include <algorithm>
 #include <set>
 #include <deque>
-
-typedef std::vector<int> vec;
-typedef std::deque<int> deq;
+#include <ctime>
 
 int*    initArr(int* arr, int ac, char** av);
 
-template<typename _t>
-void    printNums(_t lst, int size, const std::string& msg)
+template<typename T>
+void    printNums(T lst, int size, const std::string& msg)
 {
     std::cout << msg;
     for (int i = 0; i < size; i++)
@@ -52,5 +50,8 @@ T insertOrder(int n)
 
     return seq;
 }
+
+void    sortDeque(std::deque<int>& vc);
+void    sortVector(std::vector<int>& vc);
 
 #endif
