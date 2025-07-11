@@ -3,37 +3,26 @@
 int main()
 {
     srand(time(NULL));
-    
-    // try
-    // {
-    //     Span small(1);
-    //     small.addNumber(1);
-    //     small.addNumber(1);
-    // }
-    // catch(const std::exception& e)
-    // { std::cerr << "Error: " << e.what() << '\n'; }
 
     try
     {
         Span big(10);
-        big.addRange(10);
+        std::vector<int> range;
+    
+        big.addNumber(9999);
+        big.addNumber(345);
+        
+        for (int i = 1; i < 7; ++i)
+            range.push_back(i * 23);
+        
+        big.addRange(range.begin(), range.end());
+
         big.print();
-        std::cout << "longest span : " << big.longestspan() << '\n';
         std::cout << "shortest span: " << big.shortestSpan() << '\n';
+        std::cout << "longest span : " << big.longestspan() << '\n';
     }
     catch(const std::exception& e)
     { std::cerr << e.what() << '\n'; }
-    
-    // Span nums(5);
-
-    // nums.addNumber(1);
-    // nums.addNumber(19);
-    // nums.addNumber(17);
-    // nums.addNumber(9);
-    // nums.addNumber(2);
-
-    // std::cout << "longest  span: " << nums.longestspan() << std::endl;
-    // std::cout << "shortest span: " << nums.shortestSpan() << std::endl;
 
     return 0;
 }

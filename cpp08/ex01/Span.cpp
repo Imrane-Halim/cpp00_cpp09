@@ -23,8 +23,6 @@ Span&	Span::operator=(const Span& other)
 	return *this;
 }
 
-int		_numGen() { return rand() % 10000; }
-
 void	Span::addNumber(int num)
 {
 	if (_vec.size() < _max)
@@ -33,14 +31,16 @@ void	Span::addNumber(int num)
 		throw(std::runtime_error("Can't add number"));
 }
 
-void	Span::addRange(int n_elem)
+void    Span::addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end)
 {
-	if (_vec.size() + n_elem > _max)
+	int	dist = std::distance(begin, end);
+
+	if (_vec.size() + dist > _max)
 		throw(std::runtime_error("Can't add range"));
-	std::generate_n(
-		std::back_inserter(_vec),
-		n_elem,
-		_numGen
+	_vec.insert(
+		_vec.end(),
+		begin,
+		end	
 	);
 }
 

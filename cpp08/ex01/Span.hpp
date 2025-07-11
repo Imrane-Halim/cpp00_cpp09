@@ -7,8 +7,6 @@
 #include <algorithm>
 #include <climits>
 
-int _numGen();
-
 class Span
 {
     std::vector<int> _vec;
@@ -23,7 +21,7 @@ public:
     Span&   operator=(const Span& other);
 
     void    addNumber(int num);
-    void    addRange(int n_elem);
+    void    addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end);
     int     shortestSpan();
     int     longestspan();
 
