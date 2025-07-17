@@ -38,8 +38,6 @@ void    BitcoinExchange::_load_db(const std::string& path)
 
     // this line skips the first line in the file
     std::getline(db, line);
-    // if (line != "date,exchange_rate")
-    //     throw(std::runtime_error("DB: " ERR_FIRSTLINE));
 
     while (std::getline(db, line))
     {
@@ -47,11 +45,6 @@ void    BitcoinExchange::_load_db(const std::string& path)
 
         std::tm tm;
         size_t  pos = line.find(',');
-        // these checks are unecessary sinse this is a DB but added anyway :)
-        // if (pos == std::string::npos)
-        //     throw(std::runtime_error("DB: " ERR_BADINPUT":" + line));
-        // if (!strptime(line.substr(0, pos).c_str(), "%Y-%m-%d", &tm))
-        //     throw(std::runtime_error("DB: " ERR_BADINPUT":" + line));
         strptime(line.substr(0, pos).c_str(), "%Y-%m-%d", &tm);
         _records[tm] = strtof(line.substr(pos + 1).c_str(), NULL);
     }
@@ -66,6 +59,5 @@ float   BitcoinExchange::getValue(std::tm& tm)
     dataBase::reverse_iterator it1;
     for (it1 = _records.rbegin(); it1 != _records.rend(); ++it1)
         if (it1->first < tm) return it1->second;
-    // if we reached here it means date is too low
     return -1;
 }
