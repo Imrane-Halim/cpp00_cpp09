@@ -36,7 +36,7 @@ T insertOrder(int n)
         if (next < n)
         {
             seq.push_back(next);
-            continue;
+            if ((int)seq.size() == n) break;
         }
 
         int prev = seq[seq.size() - 2];
